@@ -16,19 +16,16 @@ class RandomContactListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    private var presenter: RandomContactListPresenterProtocol! {
-        didSet {
-            presenter.getContactList { [unowned self] in
-                self.collectionView.reloadData()
-            }
-        }
-    }
+    private var presenter: RandomContactListPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Random Contact List"
         setupCollectionView()
         presenter = RandomContactListPresenter(view: self)
+		presenter.getContactList { [unowned self] in
+			self.collectionView.reloadData()
+		}
     }
     
     private func setupCollectionView() {

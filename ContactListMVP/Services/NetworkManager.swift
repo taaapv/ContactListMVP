@@ -15,17 +15,20 @@ enum Link: String {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    private let urlParams = [
-        "results":"\(15)"
+	private let urlParams: Parameters = [
+        "results": "\(5)"
     ]
     
     private init() {}
     
     func fetchContactList(completion: @escaping(Result<[Contact], AFError>) -> Void) {
-        AF.request(Link.randomUserAPI.rawValue, parameters: urlParams)
+        AF.request(Link.randomUserAPI.rawValue,
+				   parameters: urlParams,
+				   encoding: URLEncoding.default)
             .validate()
             .responseDecodable(of: ContactList.self) { response in
-                switch response.result {
+				print(response)
+				switch response.result {
                 case .success(let contactList):
                     print(contactList)
                     completion(.success(contactList.results))

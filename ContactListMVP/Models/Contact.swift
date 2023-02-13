@@ -16,17 +16,18 @@ struct ContactList: Codable {
 struct Contact: Codable {
     let gender: String
     let name: Name
-    let location: Location
+//    let location: Location
     let email: String
     let phone, cell: String
-    let id: ID
+//    let id: ID
     let picture: Picture
     let nat: String
 }
 
 // MARK: - ID
 struct ID: Codable {
-    let name, value: String
+	let name: String
+	let value: String
 }
 
 // MARK: - Location

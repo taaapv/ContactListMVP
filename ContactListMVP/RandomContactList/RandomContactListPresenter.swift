@@ -31,6 +31,7 @@ class RandomContactListPresenter: RandomContactListPresenterProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+			completion()
         }
     }
     
